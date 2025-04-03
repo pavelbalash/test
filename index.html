@@ -168,7 +168,7 @@
             color: var(--text-color-light);
             cursor: pointer;
             position: absolute;
-            left: 10px; /* Сдвигаем левее */
+            left: 10px;
         }
 
         main { padding-top: var(--header-height); }
@@ -191,6 +191,13 @@
             background-position: center;
             background-attachment: fixed;
             color: white;
+        }
+
+        @media (max-width: 768px) {
+            .profile-section {
+                background-size: auto 100%; /* Улучшено для мобильных */
+                background-repeat: no-repeat;
+            }
         }
 
         img.profile {
@@ -363,18 +370,18 @@
             .site-header { padding: 0 10px; }
 
             .header-container {
-                justify-content: center; /* Центрируем содержимое */
+                justify-content: center;
                 position: relative;
             }
 
             .logo {
                 text-align: center;
-                flex-grow: 1; /* Позволяет логотипу занять центральное пространство */
+                flex-grow: 1;
             }
 
             .burger {
                 display: block;
-                left: 10px; /* Устанавливаем отступ слева */
+                left: 10px;
             }
 
             .main-nav {
@@ -454,9 +461,8 @@
                 <div class="profile-info">
                     <h1>Балашов Павел Иванович</h1>
                     <p class="subtitle">18 лет. Ученик 11 «А» класса школы МБОУ СОШ с. Баловнево</p>
-                    <!-- Цитата удалена -->
+                    <a href="#program" class="button button-primary">Узнать больше о программе</a>
                 </div>
-                <a href="#program" class="button button-primary">Узнать больше о программе</a>
             </div>
         </section>
         <section id="program" class="program-section">
