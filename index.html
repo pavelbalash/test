@@ -392,18 +392,15 @@
                 width: 100%;
                 background: var(--header-background);
                 padding: 15px 0;
-                transform: translateX(-100%) rotate(-5deg);
+                transform: translateX(100%) scale(0.95);
                 opacity: 0;
-                filter: blur(5px);
-                transform-origin: top left;
-                transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
+                transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.3s ease-in-out, scale 0.3s ease-in-out;
             }
 
             .main-nav.active {
                 display: block;
-                transform: translateX(0) rotate(0deg);
+                transform: translateX(0) scale(1);
                 opacity: 1;
-                filter: blur(0);
             }
 
             .main-nav ul {
@@ -555,6 +552,7 @@
     <script>
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.main-nav');
+        const navLinks = nav.querySelectorAll('a');
         
         burger.addEventListener('click', () => {
             nav.classList.toggle('active');
@@ -564,6 +562,14 @@
             if (window.innerWidth <= 768 && !nav.contains(e.target) && !burger.contains(e.target) && nav.classList.contains('active')) {
                 nav.classList.remove('active');
             }
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768 && nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+            });
         });
 
         const buttons = document.querySelectorAll('.button');
