@@ -392,20 +392,18 @@
                 width: 100%;
                 background: var(--header-background);
                 padding: 15px 0;
-                transform: translateY(-100%);
+                transform: translateX(-100%) rotate(-5deg);
                 opacity: 0;
-                transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+                filter: blur(5px);
+                transform-origin: top left;
+                transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
             }
 
             .main-nav.active {
                 display: block;
-                transform: translateY(0);
+                transform: translateX(0) rotate(0deg);
                 opacity: 1;
-            }
-
-            .main-nav.active li {
-                animation: slideIn 0.3s ease forwards;
-                animation-delay: calc(var(--order) * 0.1s);
+                filter: blur(0);
             }
 
             .main-nav ul {
@@ -460,17 +458,6 @@
             .profile-section {
                 background-size: contain;
                 background-position: top center;
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
             }
         }
     </style>
@@ -571,12 +558,6 @@
         
         burger.addEventListener('click', () => {
             nav.classList.toggle('active');
-            if (window.innerWidth <= 768) {
-                const navItems = nav.querySelectorAll('li');
-                navItems.forEach((item, index) => {
-                    item.style.setProperty('--order', index);
-                });
-            }
         });
 
         document.addEventListener('click', (e) => {
