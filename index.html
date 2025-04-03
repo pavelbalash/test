@@ -125,9 +125,9 @@
             padding: 0;
             margin: 0;
             display: flex;
-            overflow-x: auto; /* Добавляем горизонтальную прокрутку */
-            -webkit-overflow-scrolling: touch; /* Включаем плавную прокрутку на iOS */
-            white-space: nowrap; /* Запрещаем перенос строк */
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            white-space: nowrap;
         }
         .main-nav li {
             margin-left: 25px;
@@ -154,6 +154,10 @@
         }
         .main-nav a:hover {
             color: var(--text-color-light);
+        }
+        /* Скрываем ползунок навигации */
+        .main-nav ul::-webkit-scrollbar {
+            display: none;
         }
         /* --- Основной контент --- */
         main {
