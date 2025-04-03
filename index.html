@@ -15,22 +15,22 @@
             --background-end: #1c2526;
             --text-color: #c9d1d9;
             --text-color-light: #f0f6fc;
-            --primary-accent: #58a6ff;
+            --primary-accent: #58a6ff; /* Синий */
             --primary-accent-hover: #79bbff;
-            --secondary-accent: #2ea043;
+            --secondary-accent: #2ea043; /* Зеленый */
             --secondary-accent-hover: #3cc154;
             --card-background: #161b22;
             --border-color: #30363d;
-            --header-background: rgba(22, 27, 34, 0.9);
+            --header-background: rgba(22, 27, 34, 0.9); /* Полупрозрачный фон хедера */
             --footer-background: #161b22;
             --font-primary: 'Montserrat', sans-serif;
             --font-secondary: 'Lato', sans-serif;
-            --header-height: 60px;
+            --header-height: 60px; /* Высота хедера для отступов */
         }
         /* --- Базовые стили --- */
         html {
-            scroll-behavior: smooth;
-            scroll-padding-top: var(--header-height);
+            scroll-behavior: smooth; /* Плавная прокрутка по якорям */
+            scroll-padding-top: var(--header-height); /* Отступ при прокрутке из-за фикс. хедера */
         }
         body {
             background: linear-gradient(135deg, var(--background-start) 0%, var(--background-end) 100%);
@@ -38,10 +38,10 @@
             font-family: var(--font-secondary);
             margin: 0;
             padding: 0;
-            line-height: 1.7;
+            line-height: 1.7; /* Немного увеличим */
             font-size: 16px;
         }
-        .container {
+        .container { /* Ограничиваем ширину основного контента */
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
@@ -67,7 +67,7 @@
         }
         /* --- Кнопки --- */
         .button {
-            display: inline-block;
+            display: inline-block; /* Для отступов */
             background: var(--secondary-accent);
             color: white;
             border: none;
@@ -83,9 +83,9 @@
         }
         .button:hover {
             background: var(--secondary-accent-hover);
-            transform: translateY(-2px);
+            transform: translateY(-2px); /* Легкий подъем */
         }
-        .button.button-primary {
+        .button.button-primary { /* Альтернативный стиль кнопки */
             background: var(--primary-accent);
         }
         .button.button-primary:hover {
@@ -94,9 +94,9 @@
         /* --- Шапка (Header) и Навигация (Nav) --- */
         .site-header {
             background: var(--header-background);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px); /* Эффект размытия под хедером */
             padding: 0 20px;
-            position: fixed;
+            position: fixed; /* Фиксируем наверху */
             top: 0;
             left: 0;
             width: 100%;
@@ -106,7 +106,7 @@
             align-items: center;
             border-bottom: 1px solid var(--border-color);
         }
-        .header-container {
+        .header-container { /* Ограничиваем ширину внутри хедера */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -125,12 +125,12 @@
             padding: 0;
             margin: 0;
             display: flex;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            white-space: nowrap;
+            overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+            -webkit-overflow-scrolling: touch; /* Включаем плавную прокрутку на iOS */
         }
         .main-nav li {
             margin-left: 25px;
+            white-space: nowrap; /* Запрещаем перенос текста */
         }
         .main-nav a {
             color: var(--text-color);
@@ -139,6 +139,7 @@
             padding: 5px 0;
             position: relative;
         }
+        /* Эффект подчеркивания при наведении */
         .main-nav a::after {
             content: '';
             position: absolute;
@@ -153,25 +154,21 @@
             width: 100%;
         }
         .main-nav a:hover {
-            color: var(--text-color-light);
-        }
-        /* Скрываем ползунок навигации */
-        .main-nav ul::-webkit-scrollbar {
-            display: none;
+            color: var(--text-color-light); /* Слегка светлее при наведении */
         }
         /* --- Основной контент --- */
         main {
-            padding-top: var(--header-height);
+            padding-top: var(--header-height); /* Отступ от фикс. хедера */
         }
         /* --- Секции --- */
         section {
-            padding: 60px 0;
+            padding: 60px 0; /* Вертикальные отступы между секциями */
             border-bottom: 1px solid var(--border-color);
         }
         section:last-of-type {
-            border-bottom: none;
+            border-bottom: none; /* У последней секции нет нижней границы */
         }
-        .section-title {
+        .section-title { /* Общий стиль для заголовков секций */
             text-align: center;
             margin-bottom: 40px;
         }
@@ -181,7 +178,7 @@
             text-align: center;
         }
         img.profile {
-            width: 180px;
+            width: 180px; /* Немного уменьшим */
             height: 180px;
             border-radius: 50%;
             border: 4px solid var(--primary-accent);
@@ -189,10 +186,10 @@
             margin-bottom: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
-        .profile-section h1 {
+        .profile-section h1 { /* Имя кандидата */
             font-size: 2.5em;
         }
-        .profile-section .subtitle {
+        .profile-section .subtitle { /* Подзаголовок, слоган */
             font-size: 1.3em;
             margin-bottom: 15px;
             color: var(--text-color-light);
@@ -200,18 +197,19 @@
         .profile-bio {
             max-width: 700px;
             margin: 20px auto 0;
-            text-align: left;
+            text-align: left; /* Или center, по желанию */
             font-size: 1.1em;
         }
         /* --- Секция Программы --- */
         .program-section {
+            /* background: #21262d; Убрал фон, чтобы не сливался с карточками */
         }
-        .program-toggle-button {
+        .program-toggle-button { /* Переименовал кнопку для ясности */
             display: block;
-            margin: 0 auto 30px auto;
+            margin: 0 auto 30px auto; /* Кнопка по центру над списком */
         }
-        .program-details {
-            display: none;
+        .program-details { /* Контейнер для скрываемого списка */
+            display: none; /* Скрыт по умолчанию */
             max-width: 800px;
             margin: 0 auto;
             padding: 30px;
@@ -230,11 +228,12 @@
         .program-details li {
             font-size: 1.15em;
             margin-bottom: 15px;
-            padding-left: 25px;
+            padding-left: 25px; /* Отступ для иконки/маркера */
             position: relative;
         }
+        /* Маркер списка */
         .program-details li::before {
-            content: '✓';
+            content: '✓'; /* Или иконка Font Awesome */
             color: var(--secondary-accent);
             position: absolute;
             left: 0;
@@ -254,11 +253,11 @@
         }
         .carousel-container {
             width: 100%;
-            height: 450px;
+            height: 450px; /* Слегка увеличим */
             overflow: hidden;
             border-radius: 12px;
-            background-color: #000;
-            box-shadow: 0 8px 25px rgba(0, 255, 170, 0.3);
+            background-color: #000; /* Фон на случай, если картинка не загрузится */
+            box-shadow: 0 8px 25px rgba(0, 255, 170, 0.3); /* Усилим тень */
         }
         .carousel-images {
             display: flex;
@@ -268,7 +267,7 @@
         .carousel img {
             width: 100%;
             height: 100%;
-            object-fit: contain;
+            object-fit: contain; /* Оставляем contain */
             flex-shrink: 0;
             display: block;
         }
@@ -277,18 +276,18 @@
             opacity: 0.8;
             border: none;
             color: white;
-            padding: 12px;
-            width: 45px;
+            padding: 12px; /* Уменьшим немного */
+            width: 45px; /* Зададим размер */
             height: 45px;
             cursor: pointer;
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
             border-radius: 50%;
-            font-size: 1.5em;
+            font-size: 1.5em; /* Увеличим иконку стрелки */
             z-index: 10;
             transition: background-color 0.3s ease, opacity 0.3s ease;
-            display: flex;
+            display: flex; /* Для центрирования иконки */
             align-items: center;
             justify-content: center;
         }
@@ -301,22 +300,22 @@
         .carousel-dots {
             display: flex;
             justify-content: center;
-            margin-top: 25px;
+            margin-top: 25px; /* Увеличим отступ */
         }
         .dot {
             width: 12px;
             height: 12px;
-            background: var(--border-color);
+            background: var(--border-color); /* Неактивные точки */
             border-radius: 50%;
-            margin: 0 6px;
+            margin: 0 6px; /* Уменьшим расстояние */
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         .dot.active {
-            background: var(--primary-accent);
+            background: var(--primary-accent); /* Активная точка */
         }
         .dot:hover {
-            background: var(--text-color);
+            background: var(--text-color); /* При наведении */
         }
         /* --- Подвал (Footer) --- */
         .site-footer {
@@ -324,19 +323,19 @@
             color: var(--text-color);
             padding: 40px 0;
             text-align: center;
-            margin-top: 0;
+            margin-top: 0; /* Убираем верхний отступ, т.к. секции уже имеют padding */
             border-top: 1px solid var(--border-color);
         }
         .social-links a {
             color: var(--text-color);
-            font-size: 1.8em;
+            font-size: 1.8em; /* Размер иконок */
             margin: 0 12px;
             transition: color 0.3s ease, transform 0.3s ease;
-            display: inline-block;
+            display: inline-block; /* Для transform */
         }
         .social-links a:hover {
             color: var(--primary-accent);
-            transform: scale(1.1);
+            transform: scale(1.1); /* Увеличение иконки */
         }
         .footer-text {
             margin-top: 20px;
@@ -346,11 +345,13 @@
         @media (max-width: 768px) {
             h1 { font-size: 2.2em; }
             h2 { font-size: 1.8em; }
-            .site-header {
+            .site-header { /* Стили для мобильного хедера, если нужно будет бургер-меню */
                 padding: 0 15px;
             }
-            .main-nav {
+            .main-nav { /* Скрыть основное меню на мобильных (потребует JS для бургера) */
+                /* display: none; */
             }
+            /* Потребуются стили для кнопки бургера и мобильного меню */
             section {
                 padding: 40px 0;
             }
@@ -467,6 +468,7 @@
     <script>
         // --- Скрипт для Программы ---
         function toggleProgram() {
+            // Используем ID, который задали в HTML
             let programDetails = document.getElementById('programDetails');
             if (programDetails.style.display === 'none' || programDetails.style.display === '') {
                 programDetails.style.display = 'block';
@@ -477,12 +479,13 @@
         // --- Скрипт для Карусели ---
         let index = 0;
         const carouselImages = document.getElementById('carouselImages');
+        // Проверяем, существует ли элемент перед поиском изображений
         const images = carouselImages ? carouselImages.querySelectorAll('img') : [];
         const totalSlides = images.length;
         const dotsContainer = document.getElementById('carouselDots');
         let autoSlideInterval;
         function createDots() {
-            if (!dotsContainer) return;
+            if (!dotsContainer) return; // Проверка наличия контейнера
             dotsContainer.innerHTML = '';
             for (let i = 0; i < totalSlides; i++) {
                 const dot = document.createElement('div');
@@ -505,6 +508,7 @@
         }
         function showSlide() {
             const container = document.querySelector('.carousel-container');
+            // Добавим проверку и для carouselImages
             if (!container || !carouselImages) return;
             const slideWidth = container.clientWidth;
             carouselImages.style.transform = `translateX(${-index * slideWidth}px)`;
@@ -527,9 +531,9 @@
             resetAutoSlide();
         }
         function startAutoSlide() {
-            clearInterval(autoSlideInterval);
-            if (totalSlides > 1) {
-                autoSlideInterval = setInterval(nextSlide, 4000);
+            clearInterval(autoSlideInterval); // Очищаем перед установкой нового
+            if (totalSlides > 1) { // Запускаем только если слайдов больше одного
+                autoSlideInterval = setInterval(nextSlide, 4000); // Увеличим интервал до 4 сек
             }
         }
         function stopAutoSlide() {
@@ -539,6 +543,7 @@
             stopAutoSlide();
             startAutoSlide();
         }
+        // --- Инициализация Карусели ---
         if (totalSlides > 0) {
             createDots();
             showSlide();
@@ -548,12 +553,15 @@
                 carouselElement.addEventListener('mouseenter', stopAutoSlide);
                 carouselElement.addEventListener('mouseleave', startAutoSlide);
             }
+            // Обновление при изменении размера окна
             window.addEventListener('resize', showSlide);
         } else {
+            // Можно скрыть всю секцию карусели, если нет картинок
             const gallerySection = document.getElementById('gallery');
             if (gallerySection) gallerySection.style.display = 'none';
             console.warn("В карусели нет изображений.");
         }
+        // --- Скрипт для года в футере ---
         document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
