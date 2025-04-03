@@ -81,6 +81,10 @@
             font-family: var(--font-primary);
             transition: background-color 0.3s ease, transform 0.2s ease;
             text-align: center;
+            position: relative;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-appearance: none;
+            touch-action: manipulation;
         }
 
         .button:hover {
@@ -96,7 +100,6 @@
             background: var(--primary-accent-hover);
         }
 
-        /* Header */
         .site-header {
             background: var(--header-background);
             backdrop-filter: blur(10px);
@@ -129,6 +132,15 @@
             color: var(--text-color-light);
         }
 
+        .main-nav {
+            position: relative;
+            background: transparent;
+            padding: 0;
+            transform: none;
+            opacity: 1;
+            transition: none;
+        }
+
         .main-nav ul {
             list-style: none;
             padding: 0;
@@ -136,7 +148,9 @@
             display: flex;
         }
 
-        .main-nav li { margin-left: 20px; }
+        .main-nav li {
+            margin-left: 20px;
+        }
 
         .main-nav a {
             color: var(--text-color);
@@ -182,7 +196,6 @@
 
         .section-title { text-align: center; margin-bottom: 30px; }
 
-        /* Profile Section */
         .profile-section {
             background: var(--card-background);
             text-align: center;
@@ -227,7 +240,6 @@
             color: var(--text-color-light);
         }
 
-        /* Program Section */
         .program-cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -248,7 +260,6 @@
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
         }
 
-        /* Carousel Section */
         .carousel-section { background: var(--card-background); }
 
         .carousel {
@@ -331,7 +342,6 @@
         .dot.active { background: var(--primary-accent); }
         .dot:hover { background: var(--text-color); }
 
-        /* Footer */
         .site-footer {
             background: var(--footer-background);
             color: var(--text-color);
@@ -353,11 +363,8 @@
             transform: scale(1.1);
         }
 
-        .
+        .footer-text { margin-top: 15px; font-size: 0.85em; }
 
-.footer-text { margin-top: 15px; font-size: 0.85em; }
-
-        /* Mobile Adaptivity */
         @media (max-width: 768px) {
             h1 { font-size: 1.8em; }
             h2 { font-size: 1.6em; }
@@ -375,10 +382,7 @@
                 flex-grow: 1;
             }
 
-            .burger {
-                display: block;
-                left: 10px;
-            }
+            .burger { display: block; }
 
             .main-nav {
                 display: none;
@@ -388,16 +392,31 @@
                 width: 100%;
                 background: var(--header-background);
                 padding: 15px 0;
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
             }
 
-            .main-nav.active { display: block; }
+            .main-nav.active {
+                display: block;
+                transform: translateY(0);
+                opacity: 1;
+            }
+
+            .main-nav.active li {
+                animation: slideIn 0.3s ease forwards;
+                animation-delay: calc(var(--order) * 0.1s);
+            }
 
             .main-nav ul {
                 flex-direction: column;
                 align-items: center;
             }
 
-            .main-nav li { margin: 10px 0; }
+            .main-nav li { 
+                margin: 10px 0; 
+                margin-left: 0;
+            }
 
             section { padding: 30px 0; }
 
@@ -425,10 +444,9 @@
 
             .dot { width: 8px; height: 8px; margin: 0 4px; }
 
-            /* Оптимизация фона для мобильных устройств */
             .profile-section {
-                background-attachment: scroll; /* Убираем fixed для мобильных */
-                background-size: cover; /* Убедимся, что изображение покрывает область */
+                background-attachment: scroll;
+                background-size: cover;
             }
         }
 
@@ -439,10 +457,20 @@
             .profile-info { padding: 10px; }
             .carousel-container { height: 200px; }
 
-            /* Дополнительная оптимизация фона */
             .profile-section {
-                background-size: contain; /* Для маленьких экранов лучше contain */
+                background-size: contain;
                 background-position: top center;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
@@ -540,8 +568,33 @@
     <script>
         const burger = document.querySelector('.burger');
         const nav = document.querySelector('.main-nav');
+        
         burger.addEventListener('click', () => {
             nav.classList.toggle('active');
+            if (window.innerWidth <= 768) {
+                const navItems = nav.querySelectorAll('li');
+                navItems.forEach((item, index) => {
+                    item.style.setProperty('--order', index);
+                });
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !nav.contains(e.target) && !burger.contains(e.target) && nav.classList.contains('active')) {
+                nav.classList.remove('active');
+            }
+        });
+
+        const buttons = document.querySelectorAll('.button');
+        buttons.forEach(button => {
+            button.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                window.location.href = button.getAttribute('href');
+            }, { passive: false });
+            
+            button.addEventListener('click', (e) => {
+                button.style.color = 'white';
+            });
         });
 
         let index = 0;
